@@ -1,0 +1,42 @@
+---
+title: "Statistiek op Drug data ISG"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+## Introduction
+
+Before you read in your data, make sure that: 
+
+1. You upload the data to this environment by following the steps learnend in ICT-basics in year 1. 
+
+2. ...
+
+## Load the data
+
+```{r read data}
+drug1 <- read.csv("Drug_1_sample.csv")
+drug2 <- read.csv("Drug_2_sample.csv")
+```
+
+## Create histogram
+
+Below we will check if the data is approximately normally distributed or not.
+
+```{r histogram}
+ggplot(NULL, aes(x = C1)) +
+  geom_histogram(data = drug1) +
+  geom_histogram(data = drug2) +
+  facet_grid(~Drug, scales = "free") +
+  theme_bw()
+
+ggplot(NULL, aes(sample = C1)) +
+  geom_qq(data = drug1) +
+  geom_qq(data = drug2) +
+  facet_grid(~Drug, scales = "free") +
+  theme_bw()
+```
